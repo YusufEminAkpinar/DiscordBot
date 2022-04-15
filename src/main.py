@@ -50,12 +50,12 @@ async def on_message(message):
     message_list = message.content.lower().split()
 
     if message.content.startswith('!öneri'):
-        suggestion = str(message.content.split(' ')[1:])
+        suggestion = message.content[7:]
         with open('..\\Others\\yapılacaklar.txt', 'a') as file:
             file.write(f'{suggestion}\n')
-        await message.channel.send(f'Öneriniz alındı. {suggestion} listeye eklendi :).')
+        await message.channel.send(f'Öneriniz alındı. ```{suggestion}``` listeye eklendi :).')
 
-    if message.content.startswith('!yapılacaklar'):
+    if message.content == '!yapılacaklar':
         with open('..\\Others\\yapılacaklar.txt', 'r') as file:
             yapilacaklar = file.read()
         await message.channel.send(f'Yapılacaklar listesi:\n{yapilacaklar}')
